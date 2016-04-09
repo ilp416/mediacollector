@@ -1,0 +1,6 @@
+ru:
+  devise:
+    shared:
+      links:
+        sign_out: Выйти
+

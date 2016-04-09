@@ -7,4 +7,17 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
+    .head
+      - if user_signed_in?
+        = link_to current_user.email, current_user
+        = ' | '
+        = link_to t('devise.shared.links.sign_out'),
+            destroy_user_session_path,
+            method: :delete
+      - else
+        = link_to t('devise.shared.links.sign_in'), new_user_session_path
+        = ' | '
+        = link_to t('devise.shared.links.sign_up'), sign_up_path
+    p.notice= notice
+    p.alert= alert
     = yield

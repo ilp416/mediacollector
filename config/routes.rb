@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
+
+  resources :users, only: [:show, :index]
+  devise_for :users, skip: :sessions
+  devise_for :users, only: :sessions,
+    path: '/'
+  devise_scope :user do 
+    get 'sign_up', to: 'devise/registrations#new'
+  end
+
+  get 'pages/index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'pages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
