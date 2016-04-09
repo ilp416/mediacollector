@@ -49,3 +49,6 @@ group :development do
   gem 'spring'
 end
 
+# Add russian language support
+gem 'russian'
+
