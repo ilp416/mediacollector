@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :url_stuffs, controller: :stuffs, path: :stuffs
+  resources :stuffs
   resources :users, only: [:show, :index]
   devise_for :users, skip: :sessions
   devise_for :users, only: :sessions,

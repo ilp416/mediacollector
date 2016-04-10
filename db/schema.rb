@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409131711) do
+ActiveRecord::Schema.define(version: 20160410043303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "media", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "description"
+    t.string   "type"
+    t.text     "target_url"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "media", ["user_id"], name: "index_media_on_user_id", using: :btree
+
+  create_table "stuffs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "description"
+    t.string   "type"
+    t.text     "target_url"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "stuffs", ["user_id"], name: "index_stuffs_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -35,4 +57,6 @@ ActiveRecord::Schema.define(version: 20160409131711) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "media", "users"
+  add_foreign_key "stuffs", "users"
 end
