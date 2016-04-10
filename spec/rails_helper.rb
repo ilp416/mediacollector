@@ -61,7 +61,7 @@ RSpec.configure do |config|
   #
   config.include Devise::TestHelpers, type: :controller
   config.include DeviseRequestSpecHelpers, type: :request
-  config.include SimpleTranslate, type: :feature
+  config.include CustomSpecsHelpers, type: :feature
   config.include SignedHelpers, type: :feature
   config.include UrlClicker, type: :feature
 

@@ -14,7 +14,7 @@ class StuffsController < ApplicationController
 
   # GET /stuffs/new
   def new
-    @stuff = current_user.stuffs.new
+    @stuff = current_user.stuffs.new stuff_params
   end
 
   # GET /stuffs/1/edit
@@ -64,7 +64,6 @@ class StuffsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stuff_params
-      #params.fetch(:stuff)
-      params.require(:stuff).permit(:description, :target_url, :type, :user_id)
+      params.permit(stuff: [:description, :picture, :target_url, :type, :user_id])[:stuff]
     end
 end

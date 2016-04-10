@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :picture_stuffs, only: :new, controller: :stuffs, defaults: {stuff: {type: 'PictureStuff'}}
+  resources :url_stuffs, only: :new, controller: :stuffs, defaults: {stuff: {type: 'UrlStuff'}}
+  resources :picture_stuffs, controller: :stuffs, path: :stuffs
   resources :url_stuffs, controller: :stuffs, path: :stuffs
   resources :stuffs
   resources :users, only: [:show, :index]

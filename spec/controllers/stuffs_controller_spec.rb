@@ -11,6 +11,17 @@ RSpec.describe StuffsController, type: :controller do
   let(:valid_attributes) {
     FactoryGirl.attributes_for :stuff, user_id: @user.id
   }
+
+  let(:picture_valid_attributes) {
+    picture = Rack::Test::UploadedFile.new(
+       Rails.root.join('spec/factories/rails.jpg'),
+       'image/jpeg')
+    FactoryGirl.attributes_for :stuff,
+      user_id: @user.id,
+      type: 'PictureStuff',
+      picture: picture
+  }
+
   let(:invalid_attributes) { {target_url: ''} }
   let(:valid_session) { {} }
 
@@ -47,6 +58,12 @@ RSpec.describe StuffsController, type: :controller do
 
       it "assigns a newly created stuff as @stuff" do
         post :create, {:stuff => valid_attributes}, valid_session
+        expect(assigns(:stuff)).to be_a(Stuff)
+        expect(assigns(:stuff)).to be_persisted
+      end
+
+      it "assigns a newly created picture stuff as @stuff" do
+        post :create, {:stuff => picture_valid_attributes}, valid_session
         expect(assigns(:stuff)).to be_a(Stuff)
         expect(assigns(:stuff)).to be_persisted
       end

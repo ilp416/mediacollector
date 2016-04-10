@@ -5,7 +5,7 @@ class Stuff < ActiveRecord::Base
   validates_presence_of :user, :type
 
   def set_default_type
-    self.type = 'UrlStuff'
+    self.type ||= 'UrlStuff'
   end
 
 end

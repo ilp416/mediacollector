@@ -56,3 +56,6 @@ gem 'russian'
 # Authentication
 gem 'devise'
 gem 'devise-i18n'
+
+# File uploading
+gem 'paperclip'
