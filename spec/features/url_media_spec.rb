@@ -7,7 +7,7 @@ describe 'stuff', :type => :feature do
     sign_in @user
   end
 
-  def create_stuff_url(args = {})
+  def create_url_stuff(args = {})
     args[:target_url] ||= 'google.com'
     args[:description] ||= 'Awesome resource for searching ))'
     click_link_to '/stuffs/new'
@@ -19,7 +19,7 @@ describe 'stuff', :type => :feature do
 
   it 'can be added as link' do
     expect {
-      create_stuff_url target_url: 'gmail.com'
+      create_url_stuff target_url: 'gmail.com'
     }.to change{Stuff.count}.by(1)
     expect(Stuff.last.target_url).to eq 'gmail.com'
   end
@@ -27,7 +27,7 @@ describe 'stuff', :type => :feature do
   context 'after create' do
 
     before :each do
-      create_stuff_url
+      create_url_stuff
       @stuff = Stuff.last
     end
 

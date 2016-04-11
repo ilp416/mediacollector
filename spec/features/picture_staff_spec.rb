@@ -7,7 +7,7 @@ describe 'picture_stuff', :type => :feature do
     sign_in @user
   end
 
-  def create_stuff_url(args = {})
+  def create_picture_stuff(args = {})
     args[:picture] = factory_file args[:picture]
     args[:description] ||= 'Awesome resource for searching ))'
 
@@ -22,8 +22,8 @@ describe 'picture_stuff', :type => :feature do
 
   it 'can be added as picture' do
     expect {
-      create_stuff_url
-    }.to change{Stuff.count}.by(1)
+      create_picture_stuff
+    }.to change{PictureStuff.count}.by(1)
 
     expect(@stuff.picture_file_name).to eq 'rails.jpg'
   end
@@ -31,7 +31,7 @@ describe 'picture_stuff', :type => :feature do
   context 'after create' do
 
     before :each do
-      create_stuff_url
+      create_picture_stuff
     end
 
     it 'belongs to user by default' do
