@@ -1,2 +1,19 @@
-h1 Users#index
-p Find me in app/views/users/index.html.slim
+h1= User.model_name.human(count: 5).capitalize
+
+table
+  thead
+    tr
+      th= User.human_attribute_name :nickname
+      th= User.human_attribute_name :email
+      th
+
+  tbody
+    - @users.each do |user|
+      tr
+        td = link_to user.nickname, user
+        td = user.email
+        td
+          = link_to t('Edit'), edit_user_path(user)
+          '  |
+          = link_to t('Destroy'), user, data: {:confirm => 'Are you sure?'}, :method => :delete
+

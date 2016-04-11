@@ -1,5 +1,17 @@
-h1 Users#show
-p.email
+p
+  strong
+    =  User.human_attribute_name :nickname
+    ' :
+  = @user.nickname
+p
+  strong
+    =  User.human_attribute_name :email
+    ' :
   = @user.email
-p.name
-  = @user.name
+.dangerous
+  = link_to t('user.destroy_myself'),
+      user_registration_path,
+      method: :delete
+= link_to t('Edit'), edit_user_path(@user)
+'  |
+= link_to t('Back'), users_path

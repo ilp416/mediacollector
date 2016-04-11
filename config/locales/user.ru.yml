@@ -1,0 +1,39 @@
+ru:
+  activerecord:
+    models:
+      user:
+        few: 'Пользователя'
+        many: 'Пользователи'
+        one: 'Пользователь'
+        other: 'Пользователя'
+    attributes:
+      user:
+        avatar: Аватар
+        name: Имя
+        nickname: Псевдоним
+        disabled: Отключен
+        email: Email
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        current_password: Текущий пароль
+        phones: Телефонные номера
+        login_count: Количество входов
+        failed_login_count: Количество ошибочных входов
+        last_request_at: Последний запрос
+        last_login_at: Последний вход
+        current_login_at: Текущий вход
+        last_request_ip: IP последнего запроса
+        last_login_ip: IP последнего входа
+        current_login_ip: IP текущей сессии
+        remember_me: Запомнить
+        roles: Привелегии
+  users:
+    few: ! '%{count} пользователя'
+    many: ! '%{count} пользователей'
+    one: ! '%{count} пользователь'
+    other: ! '%{count} пользователя'
+    all: 'Пользователи'
+  user:
+    new: Новый пользователь
+    destroy_myself: Удалить аккаунт
+
