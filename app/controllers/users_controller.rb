@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+  load_and_authorize_resource find_by: :nickname
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users

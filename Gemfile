@@ -57,5 +57,8 @@ gem 'russian'
 gem 'devise'
 gem 'devise-i18n'
 
+# Authorization
+gem 'cancancan', '~> 1.10'
+
 # File uploading
 gem 'paperclip'

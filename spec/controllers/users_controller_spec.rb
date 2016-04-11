@@ -54,61 +54,121 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested user as @user" do
-      get :edit, {:id => @user.to_param}, valid_session
-      expect(assigns(:user)).to eq(@user)
+  context 'authorized user' do
+
+    before :each do
+      sign_in @user
     end
-  end
 
-
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        {email: 'new@example.com', nickname: 'newuser'}
-      }
-
-      it "updates the requested user" do
-        put :update, {:id => @user.to_param, :user => new_attributes}, valid_session
-        @user.reload
-        expect(@user.email).to eq 'new@example.com'
-        expect(@user.nickname).to eq 'newuser'
-      end
-
+    describe "GET #edit" do
       it "assigns the requested user as @user" do
-        put :update, {:id => @user.to_param, :user => valid_attributes}, valid_session
+        get :edit, {:id => @user.to_param}, valid_session
         expect(assigns(:user)).to eq(@user)
-      end
-
-      it "redirects to the user" do
-        put :update, {:id => @user.to_param, :user => valid_attributes}, valid_session
-        expect(response).to redirect_to(@user)
       end
     end
 
-    context "with invalid params" do
-      it "assigns the user as @user" do
-        put :update, {:id => @user.to_param, :user => invalid_attributes}, valid_session
-        expect(assigns(:user)).to eq(@user)
+
+    describe "PUT #update" do
+      context "with valid params" do
+        let(:new_attributes) {
+          {email: 'new@example.com', nickname: 'newuser'}
+        }
+
+        it "updates the requested user" do
+          put :update, {:id => @user.to_param, :user => new_attributes}, valid_session
+          @user.reload
+          expect(@user.email).to eq 'new@example.com'
+          expect(@user.nickname).to eq 'newuser'
+        end
+
+        it "assigns the requested user as @user" do
+          put :update, {:id => @user.to_param, :user => valid_attributes}, valid_session
+          expect(assigns(:user)).to eq(@user)
+        end
+
+        it "redirects to the user" do
+          put :update, {:id => @user.to_param, :user => valid_attributes}, valid_session
+          expect(response).to redirect_to(@user)
+        end
       end
 
-      it "re-renders the 'edit' template" do
-        put :update, {:id => @user.to_param, :user => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+      context "with invalid params" do
+        it "assigns the user as @user" do
+          put :update, {:id => @user.to_param, :user => invalid_attributes}, valid_session
+          expect(assigns(:user)).to eq(@user)
+        end
+
+        it "re-renders the 'edit' template" do
+          put :update, {:id => @user.to_param, :user => invalid_attributes}, valid_session
+          expect(response).to render_template("edit")
+        end
+      end
+    end
+
+    describe "DELETE #destroy" do
+      it "destroys the requested user" do
+        expect {
+          delete :destroy, {:id => @user.to_param}, valid_session
+        }.to change(User, :count).by(-1)
+      end
+
+      it "redirects to the users list" do
+        delete :destroy, {:id => @user.to_param}, valid_session
+        expect(response).to redirect_to(User)
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested user" do
-      expect {
-        delete :destroy, {:id => @user.to_param}, valid_session
-      }.to change(User, :count).by(-1)
+  context 'unauthenticated user' do
+
+    describe "GET #edit" do
+      it "redirects to the unauthorized url" do
+        get :edit, {:id => @user.to_param}, valid_session
+        expect(response).to redirect_to(root_url)
+      end
     end
 
-    it "redirects to the users list" do
-      delete :destroy, {:id => @user.to_param}, valid_session
-      expect(response).to redirect_to(User)
+    describe "PUT #update" do
+      it "redirects to the unauthorized url" do
+        put :update, {:id => @user.to_param, :user => valid_attributes}, valid_session
+        expect(response).to redirect_to(root_url)
+      end
+    end
+
+    describe "DELETE #destroy" do
+      it "redirects to the unauthorized url" do
+        delete :destroy, {:id => @user.to_param}, valid_session
+        expect(response).to redirect_to(root_url)
+      end
+    end
+  end
+
+  context 'unauthorized user' do
+
+    before :each do
+      signed_user = FactoryGirl.create :user
+      sign_in signed_user
+    end
+
+    describe "GET #edit" do
+      it "redirects to the unauthorized url" do
+        get :edit, {:id => @user.to_param}, valid_session
+        expect(response).to redirect_to(root_url)
+      end
+    end
+
+    describe "PUT #update" do
+      it "redirects to the unauthorized url" do
+        put :update, {:id => @user.to_param, :user => valid_attributes}, valid_session
+        expect(response).to redirect_to(root_url)
+      end
+    end
+
+    describe "DELETE #destroy" do
+      it "redirects to the unauthorized url" do
+        delete :destroy, {:id => @user.to_param}, valid_session
+        expect(response).to redirect_to(root_url)
+      end
     end
   end
 
