@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
 
-  resources :picture_stuffs, only: :new, controller: :stuffs, defaults: {stuff: {type: 'PictureStuff'}}
-  resources :url_stuffs, only: :new, controller: :stuffs, defaults: {stuff: {type: 'UrlStuff'}}
+  resources :picture_stuffs, only: :new, controller: :stuffs,
+    defaults: {stuff: {type: 'PictureStuff'}}
+  resources :url_stuffs, only: :new, controller: :stuffs,
+    defaults: {stuff: {type: 'UrlStuff'}}
+
   resources :picture_stuffs, controller: :stuffs, path: :stuffs
   resources :url_stuffs, controller: :stuffs, path: :stuffs
   resources :stuffs
-  resources :users, only: [:show, :index]
-  devise_for :users, skip: :sessions
-  devise_for :users, only: :sessions,
-    path: '/'
+
+
   devise_scope :user do 
-    get 'sign_up', to: 'devise/registrations#new'
+    get '/sign_up', to: 'devise/registrations#new', as: :new_user_registration
+    post '/sign_up', to: 'devise/registrations#create'
   end
+  devise_for :users, only: [:sessions, :passwords], path: '/'
+  devise_for :users, only: :registrations, path: '/profile'
+  resources :users, except: [:create, :new]
 
   get 'pages/index'
 
@@ -21,7 +26,6 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pages#index'
 
-  # Simulate user namespace for media collection
   get '/:user_id' => 'stuffs#index', as: 'user_staff'
 
   # Example of regular route:
