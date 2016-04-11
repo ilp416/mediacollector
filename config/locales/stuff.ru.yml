@@ -1,0 +1,11 @@
+ru:
+  activerecord:
+    models:
+      stuff: 'Медиа'
+    attributes:
+      stuff:
+        target_url: URL
+        picture: Изображение
+        description: Описание
+  stuff:
+    load_more: Показать еще

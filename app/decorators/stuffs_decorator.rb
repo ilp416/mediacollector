@@ -3,10 +3,13 @@ class StuffsDecorator < Draper::Decorator
   include Draper::LazyHelpers
   delegate_all
 
+  Stuff.per_page = 30
+
   @stuff
 
   def initialize(relation)
     @stuffs = relation
+    @params = {}
     super
   end
 
@@ -22,10 +25,18 @@ class StuffsDecorator < Draper::Decorator
   def for_showing
     apply_filters
     apply_search
-    @stuffs
+    @stuffs.page @params[:page]
   end
 
-  def with_params(params)
+  def paginate
+    params = @params.merge( page: (@params[:page] || 1).to_i + 1 )
+    params.merge! append: true
+    if for_showing.current_page < for_showing.total_pages 
+      link_to t('stuff.load_more'), params, class: 'paginate button'
+    end
+  end
+
+  def with_params(params = {})
     @params = params
     self
   end

@@ -65,3 +65,7 @@ gem 'paperclip'
 
 # View-Models
 gem 'draper', '~> 1.3'
+
+# Pagination
+gem 'will_paginate', '~> 3.0.6'
+ 

@@ -38,5 +38,31 @@ describe 'stuff', :type => :feature do
     expect(page).to have_text('movie.com')
   end
 
+  describe 'showing by pages' do
+
+    before :each do
+      # For easy change per_page value
+      @per_page = 30
+      @user.stuffs.destroy_all
+      (@per_page*3).times do |i|
+        FactoryGirl.create :url_stuff,
+          user_id: @user.id,
+          target_url: "url_#{i+1}"
+      end
+      visit "/#{@user.nickname}"
+    end
+
+    it "showing maximum per page items" do
+      expect(page).to have_text("url_#{@per_page}")
+      expect(page).not_to have_text("url_#{@per_page+1}")
+    end
+
+    it 'show next page' do
+      click_link t('stuff.load_more')
+      expect(page).to have_text("url_#{@per_page*2}")
+      expect(page).not_to have_text("url_#{@per_page*2+1}")
+    end
+  end
+
 end
 

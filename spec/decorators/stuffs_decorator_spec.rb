@@ -41,4 +41,19 @@ describe StuffsDecorator do
       expect(showing_staff).to eq @stuffs_for_find
     end
   end
+
+  describe 'apply pagination' do
+    before :each do
+      @user = FactoryGirl.create :user
+      @per_page = 30
+      90.times { FactoryGirl.create :stuff, user_id: @user.id }
+    end
+
+    it 'show "per_page" count items' do
+      showed_staff = StuffsDecorator.new(@user.stuffs).for_showing
+      expect(showed_staff.to_a.count).to eq @per_page
+    end
+
+  end
+
 end
