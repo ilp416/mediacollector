@@ -1,10 +1,11 @@
 class StuffsController < ApplicationController
   before_action :set_stuff, only: [:show, :edit, :update, :destroy]
+  before_action :set_owner, only: :index
 
   # GET /stuffs
   # GET /stuffs.json
   def index
-    @stuffs = current_user.stuffs.all
+    @stuffs = @owner.stuffs.all
   end
 
   # GET /stuffs/1
@@ -60,6 +61,10 @@ class StuffsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_stuff
       @stuff = Stuff.find(params[:id])
+    end
+
+    def set_owner
+      @owner = params[:user_id].present? ? User.find_by_nickname(params[:user_id]) : current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

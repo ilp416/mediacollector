@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pages#index'
 
+  # Simulate user namespace for media collection
+  get '/:user_id' => 'stuffs#index', as: 'user_staff'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
