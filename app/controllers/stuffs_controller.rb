@@ -1,4 +1,7 @@
 class StuffsController < ApplicationController
+
+  load_and_authorize_resource
+
   before_action :set_stuff, only: [:show, :edit, :update, :destroy]
   before_action :set_owner, only: :index
 
@@ -25,7 +28,7 @@ class StuffsController < ApplicationController
   # POST /stuffs
   # POST /stuffs.json
   def create
-    @stuff = Stuff.new(stuff_params)
+    @stuff = current_user.stuffs.new(stuff_params)
     if @stuff.save
       redirect_to stuffs_path, notice: 'Stuff was successfully created.'
     else
@@ -65,6 +68,7 @@ class StuffsController < ApplicationController
 
     def set_owner
       @owner = params[:user_id].present? ? User.find_by_nickname(params[:user_id]) : current_user
+      redirect_to :root if @owner.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
