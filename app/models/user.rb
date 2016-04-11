@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :stuffs
+  has_many :url_stuffs
+  has_many :picture_stuffs
 
   before_validation :set_nickname
 
