@@ -1,6 +1,6 @@
 .nav_type
   = link_to :new_picture_stuff, new_picture_stuff_path
-  = link_to :new_picture_stuff, new_url_stuff_path
+  = link_to :new_url_stuff, new_url_stuff_path
 = form_for @stuff, as: :stuff, html: {multipart: true} do |f|
   - if @stuff.errors.any?
     #error_explanation

@@ -62,3 +62,6 @@ gem 'cancancan', '~> 1.10'
 
 # File uploading
 gem 'paperclip'
+
+# View-Models
+gem 'draper', '~> 1.3'

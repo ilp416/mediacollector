@@ -8,4 +8,9 @@ class Stuff < ActiveRecord::Base
     self.type ||= 'UrlStuff'
   end
 
+  def self.subclasses
+    Stuff.distinct(:type).map
+    super
+  end
+
 end

@@ -8,7 +8,7 @@ class StuffsController < ApplicationController
   # GET /stuffs
   # GET /stuffs.json
   def index
-    @stuffs = @owner.stuffs.all
+    @stuffs = StuffsDecorator.new(@owner.stuffs).with_params(params)
   end
 
   # GET /stuffs/1
