@@ -2,23 +2,30 @@
   = link_to t('New'), new_stuff_path
   - @stuffs.filter_type_links.each do |link|
     = link
-table
-  thead
-    tr
-      th
-      th
-      th
-      th
-      th
+  = form_tag '', method: :get do
+    = text_field_tag :search
+    = button_tag t :Find
 
-  tbody
-    - @stuffs.for_showing.each do |stuff|
+.stuffs
+  table
+    thead
       tr
-        td = stuff.type
-        td = stuff.description
-        td = link_to 'Show', stuff
-        td = link_to 'Edit', edit_stuff_path(stuff)
-        td = link_to 'Destroy', stuff, data: {:confirm => 'Are you sure?'}, :method => :delete
+        th
+        th
+        th
+        th
+        th
 
-br
+    tbody
+      - @stuffs.for_showing.each do |stuff|
+        tr
+          td = stuff.type
+          td
+            strong= stuff.target_url
+            = stuff.description
+          td = link_to 'Show', stuff
+          td = link_to 'Edit', edit_stuff_path(stuff)
+          td = link_to 'Destroy', stuff, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+  br
 

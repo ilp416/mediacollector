@@ -3,8 +3,10 @@ class StuffsDecorator < Draper::Decorator
   include Draper::LazyHelpers
   delegate_all
 
-  def initialize(*args)
-    @stuffs = object
+  @stuff
+
+  def initialize(relation)
+    @stuffs = relation
     super
   end
 
@@ -19,6 +21,7 @@ class StuffsDecorator < Draper::Decorator
 
   def for_showing
     apply_filters
+    apply_search
     @stuffs
   end
 
@@ -28,12 +31,16 @@ class StuffsDecorator < Draper::Decorator
   end
 
   def apply_filters
+    return unless @params[:filter_type]
+    @stuffs = @stuffs.where type: @params[:filter_type]
+  end
+
+  def apply_search
+    return unless @params[:search]
     @stuffs = 
-      if @params[:filter_type]
-        where type: @params[:filter_type]
-      else
-        where(nil)
-      end
+      @stuffs.where "description LIKE ? OR target_url LIKE ?",
+        "%#{@params[:search]}%",
+        "%#{@params[:search]}%"
   end
 
   # Define presentation-specific methods here. Helpers are accessed through
