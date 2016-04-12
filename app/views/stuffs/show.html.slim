@@ -1,6 +1,6 @@
-p#notice = notice
+.stuff_unit_wrapper
+  .stuff_unit
+    = render @stuff.class.name.underscore, stuff: @stuff
 
-
-= link_to 'Edit', edit_stuff_path(@stuff)
-'|
-= link_to 'Back', stuffs_path
+.ending_links
+  = link_to t('Back'), stuffs_path
