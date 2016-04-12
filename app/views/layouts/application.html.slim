@@ -8,16 +8,29 @@ html
     = csrf_meta_tags
   body
     .head
-      - if user_signed_in?
-        = link_to current_user.email, current_user
-        = ' | '
-        = link_to t('devise.shared.links.sign_out'),
-            destroy_user_session_path,
-            method: :delete
-      - else
-        = link_to t('devise.shared.links.sign_in'), new_user_session_path
-        = ' | '
-        = link_to t('devise.shared.links.sign_up'), sign_up_path
-    p.notice= notice
-    p.alert= alert
-    = yield
+      .logo.pull-left
+        h1
+          = link_to :root do
+            = t 'media_collector'
+          - if user_signed_in?
+            = link_to user_staff_url(current_user) do
+              = "/#{current_user.nickname}"
+
+      .head_nav.pull-right
+        - if user_signed_in?
+          = link_to fa_icon(:user, class: 'fa-lg'), current_user
+          = link_to destroy_user_session_path, method: :delete do
+            = fa_icon 'sign-out', class: 'fa-lg'
+        - else
+          = link_to fa_icon('sign-in', class: 'fa-lg'), new_user_session_path
+      .clear
+    .content
+      .notice= notice
+      .alert= alert
+
+      - if content_for? :full_width
+        = yield :full_width
+      - if yield.present?
+        .text-center
+          .pretty_block.inline-block.text-left
+            = yield

@@ -1,8 +1,44 @@
-html, body
+@import url(http://allfont.ru/allfont.css?fonts=mon-amour-two-medium)
+html
   background: #ccc
+  background: #6a4f36
+  background: #777
+  background-image: url('/assets/metal-texture-008.jpg') 
+body
+  border-collapse: collapse
+  padding: 0
+  margin: 0
+  min-height: 100%
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0))
+
+.head
+  box-shadow: 0 0 10px #000
+.head_nav
+  a
+    margin: 0 5px
+    color: #44a
+.logo
+  h1
+    font-family: 'Mon amour Two Medium'
+    font-weight: normal
+    padding: 10px 20px 0 
+    margin: 0
+  a
+    text-decoration: none
+    color: #555
+.content
+  padding: 20px 10px
+  h1, h2, h3
+    color: #fff
+    text-align: center
+  .pretty_block
+    h1, h2, h3
+      color: #333
 
 .actions.awesome_links
   text-align: center
+  background: #fff
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 70%, rgba(255, 255, 255, 0.5)) transparent
   a
     display: inline-block
     padding: 6px 8px 8px 8px
@@ -18,11 +54,13 @@ html, body
   *, a
     color: #555
 
-.pretty_form
+.pretty_block
   border-radius: 3px
   border: solid 1px #aaa
   padding: 10px
+  margin: 30px 0
   background: #fff
+.pretty_form
   .actions
     padding-top: 10px
   textarea, input[type='text']
@@ -37,3 +75,9 @@ html, body
 .ending_links
   text-align: center
   padding: 15px
+
+.head
+  width: 100%
+  background: #fff
+.head_nav
+  padding: 30px 10px
