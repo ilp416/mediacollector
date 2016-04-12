@@ -1,0 +1,13 @@
+div class="#{stuff.class.name.underscore}_item stuff_item"
+  .info
+    .desc
+      strong= stuff.picture_file_name
+      br
+      em
+        small
+          = stuff.description
+    = render 'actions_links', stuff: stuff
+  = link_to stuff.picture(:original), class: :stuff_image do
+    .foreground
+    = image_tag stuff.picture(:medium)
+    .empty_space

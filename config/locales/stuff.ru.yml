@@ -8,4 +8,7 @@ ru:
         picture: Изображение
         description: Описание
   stuff:
+    links:
+      only_url_stuff_html: '<i class="fa fa-lg fa-link"></i>'
+      only_picture_stuff_html: '<i class="fa fa-lg fa-picture-o"></i>'
     load_more: Показать еще

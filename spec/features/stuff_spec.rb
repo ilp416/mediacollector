@@ -31,7 +31,7 @@ describe 'stuff', :type => :feature do
 
   it 'searchable by description' do
     fill_in 'search', :with => 'youtube'
-    click_button t('Find')
+    click_button 'find'
     expect(page).not_to have_text('sport.com')
     expect(page).not_to have_text('pretty image')
     expect(page).to have_text('youtube.com')

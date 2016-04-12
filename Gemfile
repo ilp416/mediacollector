@@ -69,3 +69,4 @@ gem 'draper', '~> 1.3'
 # Pagination
 gem 'will_paginate', '~> 3.0.6'
  
+gem "font-awesome-rails"

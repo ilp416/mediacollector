@@ -1,0 +1,9 @@
+.actions.awesome_links
+  = link_to stuff do
+    = fa_icon :expand, class: 'fa-lg'
+  - if can? :update, stuff
+    = link_to edit_stuff_path(stuff) do
+      = fa_icon :pencil, class: 'fa-lg'
+  - if can? :descroy, stuff
+    = link_to stuff, data: {:confirm => 'Are you sure?'}, :method => :delete do
+      = fa_icon :trash, class: 'fa-lg'

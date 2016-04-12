@@ -1,0 +1,77 @@
+.inline-block
+  display: inline-block
+
+.animate_std
+  -webkit-transition: all 0.5s ease
+  -moz-transition: all 0.5s ease
+  -o-transition: all 0.5s ease
+  transition: all 0.5s ease
+
+.pull-left
+  float: left
+.pull-right
+  float: right
+.clear
+  clear: both
+
+.text-center
+  text-align: center
+.text-left
+  text-align: left
+
+.position-absolute
+  position: absolute
+
+
+.button
+  display: inline-block
+  min-height: 30px
+  box-sizing: border-box
+  padding: 5px
+  border: solid 1px #aaa
+  border-radius: 3px
+  background: #eee
+  color: #555
+  .fa
+    margin-right: 8px
+
+.bg-green
+  background: #0a0
+  color: #fff
+.color-green
+  color: #080
+
+.single_liner
+  .single_unit
+    display: inline-block
+    border: solid 1px #aaa
+    border-left: none
+    border-radius: 0
+  input, button, select
+    box-sizing: border-box
+    min-height: 30px
+    padding: 3px
+    border: solid 1px #aaa
+  .single_unit:first-child
+    border-radius: 3px 0 0 3px
+    border-left: solid 1px #aaa
+  .single_unit:last-child
+    border-radius: 0 3px 3px 0
+
+.single_button_wrapper
+  .single_button
+    display: inline-block
+    border: solid 1px #aaa
+    border-left: none
+    a
+      display: block
+      padding: 3px
+  .single_button:first-of-type
+    border: solid 1px #aaa
+
+.single_button_wrapper.rounded
+  .single_button
+  .single_button:first-of-type
+    border-radius: 3px 0 0 3px
+  .single_button:last-of-type
+    border-radius: 0 3px 3px 0

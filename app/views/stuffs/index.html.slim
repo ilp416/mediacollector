@@ -1,32 +1,29 @@
-.navigation
-  = link_to t('New'), new_stuff_path
-  - @stuffs.filter_type_links.each do |link|
-    = link
-  = form_tag '', method: :get do
-    = text_field_tag :search
-    = button_tag t :Find
+.stuffs_navigation
+  .search_form
+    = form_tag '', method: :get do
+      .single_liner
+        = text_field_tag :search,
+          params[:search],
+          class: :single_unit,
+          placeholder: t(:Search)
 
-.stuffs
-  table
-    thead
-      tr
-        th
-        th
-        th
-        th
-        th
+        = button_tag class: :single_unit, id: :find do
+          = fa_icon :search
+  .link_to_add_stuff
+    = link_to new_stuff_path, class: 'button bg-green' do
+      = fa_icon 'plus', class: 'fa-lg'
+      = t(:Add)
+  .text-center.pull-left.buttons
+    .filters_links.inline-block
+      .single_button_wrapper.rounded
+        - @stuffs.filter_type_links.each do |link|
+          .single_button= link
+  .clear
 
-    tbody
-      - @stuffs.for_showing.each do |stuff|
-        tr
-          td = stuff.type
-          td
-            strong= stuff.target_url
-            = stuff.description
-          td = link_to 'Show', stuff
-          td = link_to 'Edit', edit_stuff_path(stuff)
-          td = link_to 'Destroy', stuff, data: {:confirm => 'Are you sure?'}, :method => :delete
-
+.stuffs.clear
+  - @stuffs.for_showing.each do |stuff|
+    .stuff_item_wrapper
+      = render stuff.class.name.underscore, stuff: stuff
   br
 = @stuffs.paginate
 

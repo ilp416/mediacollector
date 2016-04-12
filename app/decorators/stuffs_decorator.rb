@@ -14,10 +14,10 @@ class StuffsDecorator < Draper::Decorator
   end
 
   def filter_type_links
-    Stuff.subclasses.map do |custom_stuff|
-      active = @params[:filter_type] == custom_stuff.name
-      link_to t("stuff.links.only_#{custom_stuff.name.tableize}"),
-        @params.merge(filter_type: active ? nil : custom_stuff.name ),
+    Stuff.subclasses_names.map do |stuff_type|
+      active = @params[:filter_type] == stuff_type
+      link_to t("stuff.links.only_#{stuff_type.underscore}_html"),
+        @params.merge(filter_type: active ? nil : stuff_type),
         class: active ? :active : nil
     end
   end
@@ -29,7 +29,7 @@ class StuffsDecorator < Draper::Decorator
   end
 
   def paginate
-    params = @params.merge( page: (@params[:page] || 1).to_i + 1 )
+    params = @params.merge(page: (@params[:page] || 1).to_i + 1)
     params.merge! append: true
     if for_showing.current_page < for_showing.total_pages 
       link_to t('stuff.load_more'), params, class: 'paginate button'

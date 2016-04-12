@@ -1,0 +1,110 @@
+.stuffs_navigation
+  padding: 20px 2px
+  .filters_links
+    a 
+      padding: 6px 8px 5px
+  .buttons
+    width: 100%
+  .link_to_add_stuff
+    position: absolute
+    float: left
+  .search_form
+    position: relative
+    form
+      position: absolute
+      right: 0
+
+.stuff_item_wrapper
+  display: block
+  width: 100% 
+  float: left
+  overflow: hidden
+  padding: 2px
+  box-sizing: border-box
+  .stuff_item
+    position: relative
+    overflow: hidden
+    .info
+      position: absolute
+      z-index: 5
+      padding: 5px
+      background: #fff
+      width: 100%
+      box-sizing: border-box
+      transition: all 0.5s ease
+      height: 50%
+      border-top: solid 1px #aaa
+    .actions
+      box-sizing: border-box
+      width: 100%
+      padding: 10px
+      position: absolute
+      bottom: 0
+    .empty_space
+      width: 100%
+      padding-bottom: 100%
+      text-align: center
+      color: #fff
+    .foreground
+      z-index: 4
+      position: absolute
+      width: 100%
+      height: 100%
+      background: rgba(0, 0, 0, 0)
+      transition: all 0.5s ease
+
+.picture_stuff_item
+  img
+    position: absolute
+    width: 100%
+  .info
+    top: 100%
+
+.stuff_item_wrapper:hover
+  .stuff_item
+    .info
+      top: 50%
+    .foreground
+      background: rgba(0, 0, 0, 0.4)
+
+.url_stuff_item
+  .empty_space
+    background: #50f
+    text-align: center
+    color: #fff
+    img, i.fa
+      position: absolute
+      margin-top: 32%
+  .info
+    top: 70%
+
+@media (max-width: 4600px)
+  .stuff_item_wrapper
+    width: 16.66% 
+
+@media (max-width: 1400px)
+  .stuff_item_wrapper
+    width: 20% 
+
+@media (max-width: 1200px)
+  .stuff_item_wrapper
+    width: 25% 
+
+@media (max-width: 1000px)
+  .stuff_item_wrapper
+    width: 33.33% 
+  .search_form
+
+@media (max-width: 700px)
+  .stuff_item_wrapper
+    width: 50% 
+  .stuffs_navigation
+    .link_to_add_stuff
+      position: static
+    .buttons
+      margin-top: 10px
+      clear: both
+
+@media (max-width: 700px)
+  .stuff_item_wrapper
+    width: 100% 

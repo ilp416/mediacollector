@@ -1,0 +1,13 @@
+div class="#{stuff.class.name.underscore}_item stuff_item"
+  .info
+    .desc
+      strong= stuff.target_url
+      br
+      em
+        small
+          = stuff.description
+    = render 'actions_links', stuff: stuff
+  = link_to stuff.target_url, class: :stuff_image do
+    .foreground
+    .empty_space
+      = fa_icon :link, class: 'fa-lg in-circle'
