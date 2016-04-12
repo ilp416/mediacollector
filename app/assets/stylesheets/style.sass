@@ -10,10 +10,30 @@ html, body
     background: #55f
     color: #fff
     border-radius: 50%
-.single_button
+.single_unit
   background: #eee
+  a.active, .active
+    background: #888
+    color: #eee
   *, a
     color: #555
-  .active
-    background: #bbb
-    background: #888
+
+.pretty_form
+  border-radius: 3px
+  border: solid 1px #aaa
+  padding: 10px
+  background: #fff
+  .actions
+    padding-top: 10px
+  textarea, input[type='text']
+    width: 300px
+  input, button, select
+    box-sizing: border-box
+    min-height: 30px
+    padding: 3px
+  textarea
+    height: 100px
+    
+.ending_links
+  text-align: center
+  padding: 15px

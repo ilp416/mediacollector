@@ -1,19 +1,28 @@
-.nav_type
-  = link_to :new_picture_stuff, new_picture_stuff_path
-  = link_to :new_url_stuff, new_url_stuff_path
-= form_for @stuff, as: :stuff, html: {multipart: true} do |f|
+.text-center
   - if @stuff.errors.any?
     #error_explanation
       h2 = "#{pluralize(@stuff.errors.count, "error")} prohibited this stuff from being saved:"
       ul
         - @stuff.errors.full_messages.each do |message|
           li = message
+  .new_styff.inline-block.pretty_form
+    .buttons
+      .single_liner
+        - Stuff.subclasses_names.each do |stuff_type|
+          - active = @stuff.type == stuff_type
+          .single_unit.button
+            = link_to t("stuff.links.only_#{stuff_type.underscore}_html"),
+              new_stuff_path(stuff: {type: stuff_type}),
+              class: active ? :active : nil
+    .text-left
+      = form_for @stuff, as: :stuff, html: {multipart: true} do |f|
 
-  = f.hidden_field :type
-  = f.hidden_field :user_id
-  = render "#{@stuff.type.underscore}_fields", f: f
-  .field
-    = f.label :description
-    = f.text_area :description
-  .actions
-    = f.submit t('Save')
+        = f.hidden_field :type
+        = f.hidden_field :user_id
+        = render "#{@stuff.type.underscore}_fields", f: f
+        .field
+          = f.label :description
+          br
+          = f.text_area :description
+        .actions.text-center
+          = f.submit t('Save')

@@ -47,6 +47,13 @@
     border: solid 1px #aaa
     border-left: none
     border-radius: 0
+  .single_unit.button
+    padding: 0
+    a
+      display: inline-block
+      padding: 6px 8px 5px
+      .fa
+        margin: 0
   input, button, select
     box-sizing: border-box
     min-height: 30px
@@ -58,20 +65,3 @@
   .single_unit:last-child
     border-radius: 0 3px 3px 0
 
-.single_button_wrapper
-  .single_button
-    display: inline-block
-    border: solid 1px #aaa
-    border-left: none
-    a
-      display: block
-      padding: 3px
-  .single_button:first-of-type
-    border: solid 1px #aaa
-
-.single_button_wrapper.rounded
-  .single_button
-  .single_button:first-of-type
-    border-radius: 3px 0 0 3px
-  .single_button:last-of-type
-    border-radius: 0 3px 3px 0

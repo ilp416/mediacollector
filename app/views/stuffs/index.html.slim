@@ -15,9 +15,9 @@
       = t(:Add)
   .text-center.pull-left.buttons
     .filters_links.inline-block
-      .single_button_wrapper.rounded
+      .single_liner
         - @stuffs.filter_type_links.each do |link|
-          .single_button= link
+          .single_unit.button= link
   .clear
 
 .stuffs.clear

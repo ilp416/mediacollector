@@ -11,8 +11,9 @@ describe 'picture_stuff', :type => :feature do
     args[:picture] = factory_file args[:picture]
     args[:description] ||= 'Awesome resource for searching ))'
 
-    click_link_to '/stuffs/new'
-    click_link_to '/picture_stuffs/new'
+    #click_link_to '/stuffs/new'
+    #click_link_to '/stuffs/new?stuff[type]=PictureStuff'
+    visit '/stuffs/new?stuff[type]=PictureStuff'
     attach_file 'stuff_picture', args[:picture]
     fill_in 'stuff_description', :with => args[:description]
     click_button t('Save')
