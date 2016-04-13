@@ -70,3 +70,6 @@ gem 'draper', '~> 1.3'
 gem 'will_paginate', '~> 3.0.6'
  
 gem "font-awesome-rails"
+
+# Generates screenshots of urls
+gem 'screenshot_machine'

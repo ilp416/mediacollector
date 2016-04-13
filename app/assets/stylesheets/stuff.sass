@@ -3,9 +3,6 @@
   padding: 20px 2px
   .buttons
     width: 100%
-  .link_to_add_stuff
-    position: absolute
-    float: left
   .search_form
     form
       position: absolute
@@ -13,6 +10,11 @@
   .shares_buttons
     position: absolute
     right: 0
+
+
+.link_to_add_stuff
+  padding-top: 50%
+  margin-top: -40px
 
 .stuff_item_wrapper
   display: block
@@ -22,6 +24,7 @@
   padding: 2px
   box-sizing: border-box
   .stuff_item
+    border: solid 1px #aaa
     position: relative
     overflow: hidden
     .info
@@ -61,23 +64,39 @@
   .info
     top: 100%
 
+.url_stuff_item
+  img
+    position: absolute
+    width: 100%
+  .empty_space
+    text-align: center
+    color: #fff
+    img
+      position: absolute
+      top: 0
+      left: 0
+      z-index: 2
+    i.fa
+      position: absolute
+      margin-top: 32%
+      z-index: 4
+  .info
+    top: 70%
+
 .stuff_item_wrapper:hover
   .stuff_item
     .info
       top: 50%
+  .picture_stuff_item
     .foreground
       background: rgba(0, 0, 0, 0.4)
 
-.url_stuff_item
-  .empty_space
-    background: #50f
-    text-align: center
-    color: #fff
-    img, i.fa
-      position: absolute
-      margin-top: 32%
-  .info
-    top: 70%
+.stuff_item_wrapper
+  .url_stuff_item
+    .foreground
+      background: rgba(0, 0, 0, 0.6)
+      z-index: 3
+    
 
 .stuff_unit_wrapper
   text-align: center
@@ -111,12 +130,21 @@
   .stuff_item_wrapper
     width: 50% 
   .stuffs_navigation
-    .link_to_add_stuff
+    .search_form
       position: static
+      form
+        position: static
+  .stuffs_navigation
     .buttons
+      div
+        position: static
       margin-top: 10px
       clear: both
 
-@media (max-width: 700px)
+@media (max-width: 480px)
   .stuff_item_wrapper
     width: 100% 
+  .link_to_add_stuff_wrapper
+    .link_to_add_stuff
+      padding-top: 10%
+      float: left

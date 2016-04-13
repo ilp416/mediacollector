@@ -47,12 +47,22 @@ body
     color: #fff
     border-radius: 50%
 .single_unit
-  background: #eee
+  background: #aaa
   a.active, .active
-    background: #888
-    color: #eee
+    background: #ddd
   *, a
     color: #555
+.semi-transparent
+  .single_unit
+    opacity: 0.7
+.semi-transparent:hover
+  .single_unit
+    opacity: 1
+.search_form
+  #search
+    background: #fff
+  button
+    background: #aaa
 
 .pretty_block
   border-radius: 3px

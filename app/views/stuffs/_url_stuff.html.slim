@@ -11,3 +11,5 @@ div class="#{stuff.class.name.underscore}_item stuff_item"
     .foreground
     .empty_space
       = fa_icon :link, class: 'fa-lg in-circle'
+      - if stuff.screenshot.present? 
+        = image_tag stuff.screenshot(:medium), class: :screenshot
