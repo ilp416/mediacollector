@@ -1,4 +1,9 @@
 - content_for :full_width do
+  - if can? :create, @owner.stuffs.build
+    .link_to_add_stuff
+      = link_to new_stuff_path, class: 'button bg-green' do
+        = fa_icon 'plus', class: 'fa-lg'
+        = t(:Add)
   .stuffs_navigation
     .search_form
       = form_tag '', method: :get do
@@ -10,11 +15,10 @@
 
           = button_tag class: :single_unit, id: :find do
             = fa_icon :search
-    - if can? :create, @owner.stuffs.build
-      .link_to_add_stuff
-        = link_to new_stuff_path, class: 'button bg-green' do
-          = fa_icon 'plus', class: 'fa-lg'
-          = t(:Add)
+    .shares_buttons
+      = fa_icon 'share-alt', class: :label
+      - shares_for_staffs_of(@owner).each_pair do |resource, url|
+        = link_to fa_icon(resource), url, class: resource, target: :blank
     .text-center.pull-left.buttons
       .filters_links.inline-block
         .single_liner
