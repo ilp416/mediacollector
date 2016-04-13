@@ -23,7 +23,7 @@
     .clear
 
   .stuffs.clear
-    - if can?(:create, @owner.stuffs.build)
+    - if @owner && can?(:create, @owner.stuffs.build)
       .stuff_item_wrapper.text-center.link_to_add_stuff_wrapper
         .link_to_add_stuff
           = link_to new_stuff_path do
