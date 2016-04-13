@@ -40,14 +40,10 @@ class StuffsController < ApplicationController
   # PATCH/PUT /stuffs/1
   # PATCH/PUT /stuffs/1.json
   def update
-    respond_to do |format|
-      if @stuff.update(stuff_params)
-        format.html { redirect_to @stuff, notice: 'Stuff was successfully updated.' }
-        format.json { render :show, status: :ok, location: @stuff }
-      else
-        format.html { render :edit }
-        format.json { render json: @stuff.errors, status: :unprocessable_entity }
-      end
+    if @stuff.update(stuff_params)
+      redirect_to @stuff, notice: 'Stuff was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -55,11 +51,8 @@ class StuffsController < ApplicationController
   # DELETE /stuffs/1.json
   def destroy
     @stuff.destroy
-    respond_to do |format|
-      format.html { redirect_to user_stuff_path(current_user),
-                      notice: 'Stuff was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to user_stuff_path(current_user),
+      notice: 'Stuff was successfully destroyed.'
   end
 
   private
