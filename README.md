@@ -7,7 +7,7 @@
 
 
 [![Code Climate](https://codeclimate.com/github/ilp416/mediacollector/badges/gpa.svg)](https://codeclimate.com/github/ilp416/mediacollector)
-
+[![Travis](https://img.shields.io/travis/ilp416/mediacollector.svg?maxAge=2592000)](https://travis-ci.org/ilp416/mediacollector)
 
 
 ### Аунтентификация и авторизаия
