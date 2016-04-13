@@ -12,9 +12,9 @@ html
         h1
           = link_to :root do
             = t 'media_collector'
-          - if user_signed_in?
-            = link_to user_staff_url(current_user) do
-              = "/#{current_user.nickname}"
+          - if @owner
+            = link_to user_staff_url(@owner) do
+              = "/#{@owner.nickname}"
 
       .head_nav.pull-right
         - if user_signed_in?
