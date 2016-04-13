@@ -39,7 +39,7 @@ RSpec.describe Devise::RegistrationsController, type: :controller do
 
       it "redirects to the user's stuff" do
         post :create, {:user => valid_attributes}, valid_session
-        expect(response).to redirect_to(user_staff_path(User.last))
+        expect(response).to redirect_to(user_stuff_path(User.last))
       end
     end
 

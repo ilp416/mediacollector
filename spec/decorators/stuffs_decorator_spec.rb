@@ -11,18 +11,18 @@ describe StuffsDecorator do
     it 'return only url stuff' do
       params = {filter_type: 'UrlStuff'}
       decorator = StuffsDecorator.new(Stuff).with_params(params)
-      showing_staff = decorator.for_showing
-      type_array = showing_staff.pluck(:type).uniq
+      showing_stuff = decorator.for_showing
+      type_array = showing_stuff.pluck(:type).uniq
       expect(type_array).to eq ['UrlStuff']
-      expect(showing_staff.count).to eq 2
+      expect(showing_stuff.count).to eq 2
     end
     it 'return only picture stuffs' do
       params = {filter_type: 'PictureStuff'}
       decorator = StuffsDecorator.new(Stuff).with_params(params)
-      showing_staff = decorator.for_showing
-      type_array = showing_staff.pluck(:type).uniq
+      showing_stuff = decorator.for_showing
+      type_array = showing_stuff.pluck(:type).uniq
       expect(type_array).to eq ['PictureStuff']
-      expect(showing_staff.count).to eq 3
+      expect(showing_stuff.count).to eq 3
     end
   end
 
@@ -36,9 +36,9 @@ describe StuffsDecorator do
     it 'return stuff with keyprase in desc or target_url' do
       params = {search: 'find'}
       decorator = StuffsDecorator.new(Stuff).with_params(params)
-      showing_staff = decorator.for_showing.reverse
-      expect(showing_staff.count).to eq 2
-      expect(showing_staff).to eq @stuffs_for_find
+      showing_stuff = decorator.for_showing.reverse
+      expect(showing_stuff.count).to eq 2
+      expect(showing_stuff).to eq @stuffs_for_find
     end
   end
 
@@ -50,8 +50,8 @@ describe StuffsDecorator do
     end
 
     it 'show "per_page" count items' do
-      showed_staff = StuffsDecorator.new(@user.stuffs).for_showing
-      expect(showed_staff.to_a.count).to eq @per_page
+      showed_stuff = StuffsDecorator.new(@user.stuffs).for_showing
+      expect(showed_stuff.to_a.count).to eq @per_page
     end
 
   end

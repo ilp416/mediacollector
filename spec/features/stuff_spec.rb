@@ -25,7 +25,7 @@ describe 'stuff', :type => :feature do
   end
 
   it 'filterable by type' do
-    click_link_to user_staff_path(@user, filter_type: 'UrlStuff')
+    click_link_to user_stuff_path(@user, filter_type: 'UrlStuff')
     expect(page).not_to have_text 'pretty image'
   end
 
@@ -74,7 +74,7 @@ describe 'stuff', :type => :feature do
     before :each do
       @owner = FactoryGirl.create :user
       @stuff = FactoryGirl.create :stuff, user_id: @owner.id
-      visit user_staff_path @owner
+      visit user_stuff_path @owner
     end
     it 'cannot to add new stuff' do
       expect(page).not_to have_selector "a[href='#{new_stuff_path}']"

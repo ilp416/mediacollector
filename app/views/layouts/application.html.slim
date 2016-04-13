@@ -13,7 +13,7 @@ html
           = link_to :root do
             = t 'media_collector'
           - if @owner
-            = link_to user_staff_url(@owner) do
+            = link_to user_stuff_url(@owner) do
               = "/#{@owner.nickname}"
 
       .head_nav.pull-right
