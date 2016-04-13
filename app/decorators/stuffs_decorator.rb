@@ -25,7 +25,7 @@ class StuffsDecorator < Draper::Decorator
   def for_showing
     apply_filters
     apply_search
-    @stuffs.page @params[:page]
+    @stuffs.order(created_at: :desc).page @params[:page]
   end
 
   def paginate

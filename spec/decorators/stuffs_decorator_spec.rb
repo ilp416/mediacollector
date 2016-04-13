@@ -12,7 +12,7 @@ describe StuffsDecorator do
       params = {filter_type: 'UrlStuff'}
       decorator = StuffsDecorator.new(Stuff).with_params(params)
       showing_staff = decorator.for_showing
-      type_array = showing_staff.distinct(:type).pluck(:type)
+      type_array = showing_staff.pluck(:type).uniq
       expect(type_array).to eq ['UrlStuff']
       expect(showing_staff.count).to eq 2
     end
@@ -20,7 +20,7 @@ describe StuffsDecorator do
       params = {filter_type: 'PictureStuff'}
       decorator = StuffsDecorator.new(Stuff).with_params(params)
       showing_staff = decorator.for_showing
-      type_array = showing_staff.distinct(:type).pluck(:type)
+      type_array = showing_staff.pluck(:type).uniq
       expect(type_array).to eq ['PictureStuff']
       expect(showing_staff.count).to eq 3
     end
@@ -36,7 +36,7 @@ describe StuffsDecorator do
     it 'return stuff with keyprase in desc or target_url' do
       params = {search: 'find'}
       decorator = StuffsDecorator.new(Stuff).with_params(params)
-      showing_staff = decorator.for_showing
+      showing_staff = decorator.for_showing.reverse
       expect(showing_staff.count).to eq 2
       expect(showing_staff).to eq @stuffs_for_find
     end

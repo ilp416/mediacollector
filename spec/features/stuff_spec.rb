@@ -53,14 +53,20 @@ describe 'stuff', :type => :feature do
     end
 
     it "showing maximum per page items" do
-      expect(page).to have_text("url_#{@per_page}")
-      expect(page).not_to have_text "url_#{@per_page+1}"
+      @user.reload
+      last_record = @user.stuffs.last
+      last_nth_record = @user.stuffs.last(@per_page).first
+      expect(page).to have_text last_record.target_url
+      expect(page).not_to have_text last_nth_record
     end
 
     it 'show next page' do
       click_link t('stuff.load_more')
-      expect(page).to have_text("url_#{@per_page*2}")
-      expect(page).not_to have_text "url_#{@per_page*2+1}"
+      paged_stuffs = @user.stuffs.limit(@per_page).offset(@per_page) 
+      last_record = paged_stuffs.last
+      last_nth_record = paged_stuffs.first
+      expect(page).to have_text last_record.target_url
+      expect(page).not_to have_text last_nth_record
     end
   end
 
