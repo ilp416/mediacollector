@@ -26,16 +26,16 @@ describe 'stuff', :type => :feature do
 
   it 'filterable by type' do
     click_link_to user_staff_path(@user, filter_type: 'UrlStuff')
-    expect(page).not_to have_text('pretty image')
+    expect(page).not_to have_text 'pretty image'
   end
 
   it 'searchable by description' do
     fill_in 'search', :with => 'youtube'
     click_button 'find'
-    expect(page).not_to have_text('sport.com')
-    expect(page).not_to have_text('pretty image')
-    expect(page).to have_text('youtube.com')
-    expect(page).to have_text('movie.com')
+    expect(page).not_to have_text 'sport.com'
+    expect(page).not_to have_text 'pretty image'
+    expect(page).to have_text 'youtube.com'
+    expect(page).to have_text 'movie.com'
   end
 
   describe 'showing by pages' do
@@ -54,14 +54,33 @@ describe 'stuff', :type => :feature do
 
     it "showing maximum per page items" do
       expect(page).to have_text("url_#{@per_page}")
-      expect(page).not_to have_text("url_#{@per_page+1}")
+      expect(page).not_to have_text "url_#{@per_page+1}"
     end
 
     it 'show next page' do
       click_link t('stuff.load_more')
       expect(page).to have_text("url_#{@per_page*2}")
-      expect(page).not_to have_text("url_#{@per_page*2+1}")
+      expect(page).not_to have_text "url_#{@per_page*2+1}"
     end
+  end
+
+  context 'no owner user' do
+    before :each do
+      @owner = FactoryGirl.create :user
+      @stuff = FactoryGirl.create :stuff, user_id: @owner.id
+      visit user_staff_path @owner
+    end
+    it 'cannot to add new stuff' do
+      expect(page).not_to have_selector "a[href='#{new_stuff_path}']"
+    end
+    it 'cannot to edit owner\'s stuff' do
+      expect(page).not_to have_selector "a[href='#{edit_stuff_path @stuff}']"
+    end
+    it 'cannot to edit owner\'s stuff' do
+      destroy_selector = "a[href='#{stuff_path @stuff}'][method='delete']"
+      expect(page).not_to have_selector destroy_selector
+    end
+
   end
 
 end
