@@ -75,7 +75,7 @@ gem "font-awesome-rails"
 gem 'screenshot_machine'
 
 # AWS for Image storage
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 # Heroku deploy
 gem 'puma'
