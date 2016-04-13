@@ -25,7 +25,7 @@ describe 'the signup process', :type => :feature do
   end
 
   it 'can be taken from root page' do
-    visit '/'
+    visit '/sign_in'
     expect(page).to have_css 'a[href="/sign_up"]'
   end
 
