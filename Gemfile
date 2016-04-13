@@ -74,6 +74,9 @@ gem "font-awesome-rails"
 # Generates screenshots of urls
 gem 'screenshot_machine'
 
+# AWS for Image storage
+gem 'aws-sdk'
+
 # Heroku deploy
 gem 'puma'
 ruby '2.2.3'
