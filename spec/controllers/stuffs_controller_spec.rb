@@ -83,7 +83,7 @@ RSpec.describe StuffsController, type: :controller do
 
         it "redirects to the created stuff" do
           post :create, {:stuff => valid_attributes}, valid_session
-          expect(response).to redirect_to( stuffs_url)
+          expect(response).to redirect_to( user_stuff_url(@user))
         end
       end
 
@@ -153,7 +153,7 @@ RSpec.describe StuffsController, type: :controller do
 
       it "redirects to the stuffs list" do
         delete :destroy, {:id => @stuff.to_param}, valid_session
-        expect(response).to redirect_to(stuffs_url)
+        expect(response).to redirect_to(user_stuff_url(@user))
       end
     end
   end

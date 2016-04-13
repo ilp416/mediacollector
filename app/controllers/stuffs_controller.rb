@@ -31,7 +31,7 @@ class StuffsController < ApplicationController
   def create
     @stuff = current_user.stuffs.new(stuff_params)
     if @stuff.save
-      redirect_to stuffs_path, notice: 'Stuff was successfully created.'
+      redirect_to user_stuff_path(current_user), notice: 'Stuff was successfully created.'
     else
       render :new
     end
@@ -56,7 +56,8 @@ class StuffsController < ApplicationController
   def destroy
     @stuff.destroy
     respond_to do |format|
-      format.html { redirect_to stuffs_url, notice: 'Stuff was successfully destroyed.' }
+      format.html { redirect_to user_stuff_path(current_user),
+                      notice: 'Stuff was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
