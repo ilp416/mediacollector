@@ -28,15 +28,17 @@ RSpec.describe StuffsController, type: :controller do
 
   describe "GET #index without owner" do
     it "assigns all stuffs as @stuffs" do
+      @stuffs = Stuff.all
       get :index, {}, valid_session
-      expect(response).to redirect_to(root_url)
+      expect(assigns(:stuffs).all).to eq(@stuffs)
     end
   end
 
   describe "GET #index" do
     it "assigns all stuffs as @stuffs" do
+      @stuffs = @user.stuffs.all
       get :index, {user_id: @user.id}, valid_session
-      expect(assigns(:stuffs)).to eq([@stuff])
+      expect(assigns(:stuffs).all).to eq(@stuffs)
     end
   end
 
