@@ -32,3 +32,4 @@ public/system/*
 .*.swp
 .DS_Store
 config/local_env.yml
+.env

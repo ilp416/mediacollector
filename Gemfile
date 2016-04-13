@@ -73,3 +73,7 @@ gem "font-awesome-rails"
 
 # Generates screenshots of urls
 gem 'screenshot_machine'
+
+# Heroku deploy
+gem 'puma'
+ruby '2.2.3'
