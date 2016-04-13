@@ -78,5 +78,6 @@ gem 'screenshot_machine'
 gem 'aws-sdk', '< 2.0'
 
 # Heroku deploy
+gem 'rails_12factor'
 gem 'puma'
 ruby '2.2.3'
