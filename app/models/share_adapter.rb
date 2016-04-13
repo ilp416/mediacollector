@@ -10,10 +10,9 @@ class ShareAdapter
     'google-plus': "https://plus.google.com/share?url="
   }
 
-  def self.share_collection_of(user)
+  def self.share_this(url)
     LINKS.inject({}) do |hash, i|
       key, url_tpl = i
-      url = url_helpers.user_staff_url(user, host: 'localhost:3000')
       url_param = URI.encode_www_form_component url
       hash.merge key => url_tpl + url_param
     end

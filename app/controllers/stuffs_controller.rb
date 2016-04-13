@@ -8,7 +8,8 @@ class StuffsController < ApplicationController
   # GET /stuffs
   # GET /stuffs.json
   def index
-    @stuffs = StuffsDecorator.new(@owner.stuffs).with_params(params)
+    stuffs = @owner.present? ? @owner.stuffs : Stuff
+    @stuffs = StuffsDecorator.new(stuffs).with_params(params)
   end
 
   # GET /stuffs/1
@@ -67,8 +68,7 @@ class StuffsController < ApplicationController
     end
 
     def set_owner
-      @owner = params[:user_id].present? ? User.find_by_nickname(params[:user_id]) : current_user
-      redirect_to :root if @owner.nil?
+      @owner = params[:user_id].present? ? User.find_by_nickname(params[:user_id]) : nil
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

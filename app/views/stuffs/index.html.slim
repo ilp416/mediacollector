@@ -2,7 +2,8 @@
   .stuffs_navigation
     .shares_buttons
       = fa_icon 'share-alt', class: :label
-      - shares_for_staffs_of(@owner).each_pair do |resource, url|
+      - 
+      - shares_current_url.each_pair do |resource, url|
         = link_to fa_icon(resource), url, class: resource, target: :blank
     .search_form
       = form_tag '', method: :get do
@@ -22,7 +23,7 @@
     .clear
 
   .stuffs.clear
-    - if can? :create, @owner.stuffs.build
+    - if can?(:create, @owner.stuffs.build)
       .stuff_item_wrapper.text-center.link_to_add_stuff_wrapper
         .link_to_add_stuff
           = link_to new_stuff_path do
