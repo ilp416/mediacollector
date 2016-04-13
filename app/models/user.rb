@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   before_validation :set_nickname
 
   validates_length_of :nickname, :minimum => 6
-  validates_format_of :nickname, with: /[A-Za-z]/
+  validates_format_of :nickname, with: /[A-z]/
   validates_uniqueness_of :email, :nickname, :case_sensitive => false
 
   def nickname_uniq?

@@ -7,7 +7,7 @@ class ShareAdapter
   LINKS = {
     facebook: "https://www.facebook.com/sharer/sharer.php?u=",
     twitter: "https://twitter.com/home?status=",
-    'google-plus': "https://plus.google.com/share?url="
+    'google-plus' => "https://plus.google.com/share?url="
   }
 
   def self.share_this(url)

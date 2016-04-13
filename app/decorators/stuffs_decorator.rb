@@ -5,8 +5,6 @@ class StuffsDecorator < Draper::Decorator
 
   Stuff.per_page = 30
 
-  @stuff
-
   def initialize(relation)
     @stuffs = relation
     @params = {}
